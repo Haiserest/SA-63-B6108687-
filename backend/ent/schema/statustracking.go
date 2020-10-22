@@ -14,7 +14,7 @@ type StatusTracking struct {
 // Fields of the StatusTracking.
 func (StatusTracking) Fields() []ent.Field {
 	return []ent.Field{
-		field.String("status").NotEmpty(),
+		field.String("status").NotEmpty().Unique(),
 	}
 }
 

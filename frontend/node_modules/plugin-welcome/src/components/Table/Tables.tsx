@@ -11,7 +11,7 @@ import Button from '@material-ui/core/Button';
 import { DefaultApi } from '../../api/apis';
 import { EntTreatment } from '../../api/models/EntTreatment';
 import moment from 'moment';
- 
+
 const useStyles = makeStyles({
  table: {
    minWidth: 650,
@@ -50,6 +50,7 @@ export default function ComponentsTable() {
            <TableCell align="center">อาการ</TableCell>
            <TableCell align="center">สถานะ</TableCell>
            <TableCell align="center">วันที่การนัดหมายครั้งต่อไป</TableCell>
+           <TableCell align="center">แพทย์</TableCell>
            <TableCell align="center">delete</TableCell>
          </TableRow>
        </TableHead>
@@ -61,7 +62,8 @@ export default function ComponentsTable() {
              <TableCell align="center">{item.edges?.patientID?.patientAge}</TableCell>
              <TableCell align="center">{item.symptom}</TableCell>
              <TableCell align="center">{item.edges?.statusID?.status}</TableCell>
-             <TableCell align="center">{moment(item.dateAppoint).format("DD/MM/YYYY")}</TableCell>
+             <TableCell align="center">{moment(item.dateAppoint).format("DD-MM-YYYY")}</TableCell>
+             <TableCell align="center">{item.edges?.doctorID?.doctorName}</TableCell>
              <TableCell align="center">
                <Button
                  onClick={() => {

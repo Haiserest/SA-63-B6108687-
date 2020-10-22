@@ -11,31 +11,41 @@ import {
  ContentHeader,
  Link,
 } from '@backstage/core';
-const username={ givenuser: 'นพ.เอื้อสีวงศ์ มะม่วงร่วง'}
+
+//const username = { givenuser: login}
 const WelcomePage: FC<{}> = () => {
  const profile = { givenName: 'ระบบประวัติการรักษา' };
  
  return (
-   <Page theme={pageTheme.home}>
+   <Page theme={pageTheme.service}>
      <Header
        title={`Welcome ${profile.givenName || 'ระบบประวัติการรักษา'}`}
-       subtitle={`${username.givenuser}`}
+       subtitle={``}
      >
+    {/*       
+       {username.givenuser}
+    
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
            <Button variant="contained" color="secondary" href="#outlined-buttons">
           LogOut
         </Button> 
-
+*/}
      </Header>
      
      <Content>
-       <ContentHeader title="ระบบประวัติ">
-         <Link component={RouterLink} to="/user">
+       <ContentHeader title="ระบบประวัติ">    
+
+         <Link component={RouterLink} to="/create">
            <Button variant="outlined" color="primary">
              Add Data
            </Button>
            </Link> 
-                
+&nbsp;&nbsp;&nbsp;&nbsp;
+            <Link component={RouterLink} to="/">
+           <Button variant="outlined" color="secondary">
+             LOG OUT
+           </Button>
+       </Link> 
        </ContentHeader>
        <ComponanceTable></ComponanceTable>
      </Content>

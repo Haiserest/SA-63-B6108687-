@@ -12,7 +12,7 @@ var (
 	PatientsColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeInt, Increment: true},
 		{Name: "patient_age", Type: field.TypeInt},
-		{Name: "patient_name", Type: field.TypeString},
+		{Name: "patient_name", Type: field.TypeString, Unique: true},
 	}
 	// PatientsTable holds the schema information for the "patients" table.
 	PatientsTable = &schema.Table{
@@ -24,7 +24,7 @@ var (
 	// StatusTrackingsColumns holds the columns for the "status_trackings" table.
 	StatusTrackingsColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeInt, Increment: true},
-		{Name: "status", Type: field.TypeString},
+		{Name: "status", Type: field.TypeString, Unique: true},
 	}
 	// StatusTrackingsTable holds the schema information for the "status_trackings" table.
 	StatusTrackingsTable = &schema.Table{
@@ -74,7 +74,7 @@ var (
 	// UsersColumns holds the columns for the "users" table.
 	UsersColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeInt, Increment: true},
-		{Name: "doctor_email", Type: field.TypeString},
+		{Name: "doctor_email", Type: field.TypeString, Unique: true},
 		{Name: "doctor_name", Type: field.TypeString},
 	}
 	// UsersTable holds the schema information for the "users" table.

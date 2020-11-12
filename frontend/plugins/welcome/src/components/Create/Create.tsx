@@ -45,7 +45,6 @@ export default function Create() {
  const profile = { givenName: 'ระบบประวัติการรักษา' };
  const api = new DefaultApi();
  
- 
  //const [user, setUser] = useState(initialUserState);
  const [users, setUsers] = useState<EntUser[]>([]);
  const [patients, setPatients] = useState<EntPatient[]>([]);
@@ -93,6 +92,13 @@ export default function Create() {
   setAddtime(event.target.value as string);
  };
 
+ React.useEffect(() => {
+   const data = localStorage.getItem("doctordata");
+   if (data) {
+     setUserid(JSON.parse(data));
+   }
+ })
+
  const CreateTreatment = async () =>{
   const treatment = {
     userid    : userid,
@@ -115,9 +121,9 @@ export default function Create() {
  };
 
 
- const doctor_id_handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-  setUserid(event.target.value as number);
- };
+//  const doctor_id_handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+//   setUserid(event.target.value as number);
+//  };
 
 const patient_id_handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
   setPatientid(event.target.value as number);
@@ -168,7 +174,7 @@ const patient_id_handleChange = (event: React.ChangeEvent<{ value: unknown }>) =
               label="Doctor"
               id="doctor_id"
               value={userid}
-              onChange={doctor_id_handleChange}
+            //  onChange={doctor_id_handleChange}
               style = {{width: 600}}
             >
               {users.map((item:EntUser)=>
@@ -234,7 +240,7 @@ const patient_id_handleChange = (event: React.ChangeEvent<{ value: unknown }>) =
  </div>
 <table>
   <tr><td>
-    📅 หากรักษาเสร็จสิ้นให้เลือก " วันนี้ "
+  📅 หากรักษาเสร็จสิ้นให้เลือก " วันนี้ "
     <p>
   📅 หากยังติดตามอาการให้เลือกวันที่นัดหมาย
     </p>

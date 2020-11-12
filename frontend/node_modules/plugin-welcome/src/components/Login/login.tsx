@@ -35,16 +35,7 @@ const useStyles = makeStyles((theme: Theme) =>
    },
  }),
 );
-/*
-class login extends Component{
-    constructor(props){
-        super(props)
-        this.state={ 
-      //      uname: this.props.
-        }
-    }
-}
-*/
+
 export default function Create() {
     
  const classes = useStyles();
@@ -54,12 +45,11 @@ export default function Create() {
  //const [user, setUser] = useState(initialUserState);
  const [users, setUsers] = useState<EntUser[]>([]);
  //const [status, setStatus] = useState(false);
- //const [alert, setAlert] = useState(true);
+ const [alert, setAlert] = useState(true);
  const [loading, setLoading] = useState(true);
 
  //const [treatment, setTreatment] = useState(String);
  const [userid, setUserid] = useState(Number);
-// var uname = userid;
 
  useEffect(() => {
    const getUsers = async () => {
@@ -75,6 +65,18 @@ export default function Create() {
   setUserid(event.target.value as number);
  };
  
+React.useEffect(() => {
+  localStorage.setItem("doctordata",JSON.stringify(userid));
+});
+
+const login = async () =>{ 
+  if (userid != null){
+  setAlert(true);
+} else {
+  setAlert(false);
+}
+};
+
  return (
    <Page theme={pageTheme.service}>
      <Header
@@ -86,26 +88,26 @@ export default function Create() {
 {/* 
        <Button variant="outlined" color="secondary" href="#outlined-buttons">
           LogOut
-        </Button>
+        </Button> */}
 
-         {status ? (
+         {/* {status ? (
            <div>
              {alert ? (
                <Alert severity="success">
-                ✔️ ADD DATA COMPLETE : 😁 😆 🤩!
+                ✔️ LOG IN COMPLETE : 😁 😆 🤩!
                </Alert>
              ) : (
                <Alert severity="warning" style={{ marginTop: 20 }}>
-                 ❌ CAN'T ADD DATA : 🥺 😵 😱!
+                 ❌ CAN'T LOG IN : 🥺 😵 😱!
                </Alert>
              )}
            </div>
-         ) : null}
-*/}         
+         ) : null} */}
+         
        </ContentHeader>
 
        <div className={classes.root}>
-         <form noValidate autoComplete="off">
+         <form noValidate autoComplete="off" >
          <div>
 <FormControl 
              className={classes.margin}
@@ -119,6 +121,7 @@ export default function Create() {
               value={userid}
               onChange={doctor_id_handleChange}
               style = {{width: 600}}
+              required = {true}
             >
               {users.map((item:EntUser)=>
               <MenuItem value={item.id}>{item.doctorName}</MenuItem>)}
@@ -129,6 +132,9 @@ export default function Create() {
            <div className={classes.margin}>
               
              <Button
+              onClick={() => {
+                login();
+              }}
                //style={{ marginLeft: 20 }}
                component={RouterLink}
                to="/welcome"
@@ -144,5 +150,4 @@ export default function Create() {
      </Content>
    </Page>
  );
-//  return uname;
 }

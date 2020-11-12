@@ -40,12 +40,12 @@ const WelcomePage: FC<{}> = () => {
              Add Data
            </Button>
            </Link> 
-&nbsp;&nbsp;&nbsp;&nbsp;
+ &nbsp;&nbsp;&nbsp;&nbsp;
             <Link component={RouterLink} to="/">
            <Button variant="outlined" color="secondary">
              LOG OUT
            </Button>
-       </Link> 
+       </Link>  
        </ContentHeader>
        <ComponanceTable></ComponanceTable>
      </Content>
